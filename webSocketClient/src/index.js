@@ -1,23 +1,22 @@
-import ReactDOM from 'react-dom'; 
+import ReactDOM from 'react-dom/client'; 
 import React, {Component} from 'react';
 import { w3cwebsocket as W3CWebSocket } from 'websocket';
 
 const client = new W3CWebSocket('ws://localhost:8002');
 
-export default class App extends Component {
-    componentDidMount() {
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const App = () => {
+    React.useEffect(() => {
         client.onopen = () => {
             console.log('WebSocket Client Connected');
         }
-    }
-
-    render() {
-        return (
-            <div>
-                <h1>Hello, World!</h1>
-            </div>
-        )
-    }
+    }, []);
+    return (
+        <div>
+            <h1>Hello, World!</h1>
+        </div>
+    );
 }
 
-ReactDOM.render(<App/>, document.getElementById('root'));
+root.render(<App/>);
