@@ -5,7 +5,7 @@ const http = require('http');
 // Spinning the http server and the websocket server.
 const server = http.createServer();
 server.listen(webSocketServerPort);
-console.log('listening on port 8001');
+console.log('listening on port 8002');
 
 const wsServer = new webSocketServer({
     httpServer: server

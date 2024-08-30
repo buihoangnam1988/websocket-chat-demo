@@ -11,7 +11,7 @@ Create `index.js`
 
 Start script should be `node index.js`
 
-    "start": "set PORT=8001 && node index.js"
+    "start": "set PORT=8002 && node index.js"
 
 Run the program
 
