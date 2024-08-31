@@ -1,6 +1,6 @@
 # Web Socker Demo: Server & Client
 ## Introduction:
-* A simple websocket-base chat app with backend () and frontend ()
+* A simple websocket-base chat app with backend (webSocketServer) and frontend (webSocketClient)
 * Inspired by: https://www.youtube.com/watch?v=LenNpb5zqGE
 * Improvements:
     * Hide scroll bar using CSS & SimpleBar
@@ -10,41 +10,29 @@
 Screenshot:
 
 ![](.md/img/screenshot1.png)
-## Step by step
-### Step 1: Create server app
-    mkdir webSocketServer
-    cd webSocketServer
-    npm init
+## Getting started
+### Server app - webSocketServer
+Install packages
 
-Create `index.js`
+    npm install
 
-Start script should be `node index.js`
+Start the program
 
-    "start": "set PORT=8002 && node index.js"
-
-Run the program
-
+    # On Linux/MacOS
     npm start
-### Step 2: Create server app
-Init
+    # On Windows
+    npm start_pc
+### Client app - webSocketClient
+Install packages
 
-    mkdir webSocketClient
-    cd webSocketClient
-    npm init
+    npm install
 
-Add packages
+Start the frontend
 
-    npm install --save websocket react react-dom react-scripts antd
-
-Create `public/index.html`, `src/index.js`, `src/index.css`
-
-Important: Different from a normal node program, react program should uses `react-scripts`
-
-    "start": "set PORT=3001 && react-scripts start"
-
-Start the program:
-
+    # On Linux/MacOS
     npm start
+    # On Windows
+    npm start_pc
 
 ## Others
 * Fix complaining about `React.render` & `ReactDOM` import: https://stackoverflow.com/a/71668419/9002449

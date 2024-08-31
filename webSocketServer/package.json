@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "set PORT=8002 && node index.js"
+    "start": "PORT=8002 node index.js",
+    "start_pc": "set PORT=8002 && node index.js"
   },
   "author": "",
   "license": "ISC",
