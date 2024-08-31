@@ -12,10 +12,23 @@ const App = () => {
         client.onopen = () => {
             console.log('WebSocket Client Connected');
         }
+        client.onmessage = (message) => {
+            //const dataFromServer = JSON.parse(message.data);
+            //console.log(message.data);
+            console.log('Message from server: ', message.data);
+        }
     }, []);
+
+    const handleBtnClick = (message) => {
+        if (client.readyState === client.OPEN) {
+            client.send(message);
+        }
+    }
+
     return (
         <div>
             <h1>Hello, World!</h1>
+            <button onClick={() => handleBtnClick("Hello")}>Send Message</button>
         </div>
     );
 }

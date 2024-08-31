@@ -39,3 +39,4 @@ Start the program:
 
 ## Others
 * Fix complaining about `React.render` & `ReactDOM` import: https://stackoverflow.com/a/71668419/9002449
+* Websocket security best practices: https://ably.com/topic/websocket-security

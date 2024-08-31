@@ -43,13 +43,14 @@ wsServer.on('request', function (request) {
 
     // On message receive
     connection.on('message', function(message) {
+        //console.log(message);
         if (message.type === 'utf8') {
-            LOG('Received Message: ', message.utf8Data);
+            //LOG('Received Message: ' + message.utf8Data);
 
             // broadcasting message to all connected clients
             for (key in clients) {
-                clients[key].sendUTF(message.utf8Data);
-                LOG('Sent Message to: ', clients[key]);
+                clients[key].send(message.utf8Data);
+                LOG(`Sent Message to: ${key}`);
             }
         }
     })
