@@ -28,21 +28,29 @@ const App = () => {
 
     const chatContentRef = React.createRef();
 
+    // useEffect: Run once when the component is mounted
     React.useEffect(() => {
         client.onopen = () => {
             console.log('WebSocket Client Connected');
         }
         client.onmessage = (message) => {
-            //const dataFromServer = JSON.parse(message.data);
-            //console.log(message.data);
             console.log('Message from server: ', message.data);
             setMessages(prev => [...prev, JSON.parse(message.data)]);
-            //if (isScrolledToEnd && chatContentRef && chatContentRef.current && chatContentRef.current.scrollHeight) {
-            //    console.log("Scrolling to bottom");
-            //    chatContentRef.current.scrollTop = chatContentRef.current.scrollHeight;
-            //}
         }
     }, []);
+
+    // useEffect: Run once when logged in
+    React.useEffect(() => {
+        if (isLoggedIn) {
+            if (chatContentRef) {
+                if (!isScrollListenerAdded) {
+                    chatContentRef.current.addEventListener('scroll', handleScroll);
+                    setIsScrollListenerAdded(true);
+                    //console.log("Scroll Listener Added");
+                }
+            }
+        }
+    }, [isLoggedIn]);
 
     // useEffect: Scroll to the end of the chat content when a new message is received
     React.useEffect(() => {
@@ -54,14 +62,12 @@ const App = () => {
 
     // handleScroll: Check if the user has scrolled to the end of the chat content
     const handleScroll = (event) => {
-        //console.log("Scroll Event");
         const { scrollHeight, scrollTop, clientHeight } = event.target;
-        console.log("Scroll Event: ", scrollHeight, scrollTop, clientHeight);
         const isBottomReached = (scrollHeight - Math.ceil(scrollTop) - 20 <= clientHeight);
         setIsScrolledToEnd(isBottomReached);
-        console.log("Scroll Event: ", isBottomReached);
     };
 
+    // handleBtnClick: Send the message to the server
     const handleBtnClick = (message) => {
         if (client.readyState === client.OPEN) {
             // Note:
@@ -77,20 +83,6 @@ const App = () => {
                 userName: userName
             }));
             setMsg('');
-            if (chatContentRef) {
-                console.log("step 1");
-                console.log(chatContentRef.current.scrollHeight);
-                console.log("step 2");
-                console.log(chatContentRef.current.minHeight);
-                console.log("step 3");
-                //chatContentRef.current.scrollTop = chatContentRef.current.scrollHeight;
-                if (!isScrollListenerAdded) {
-                    chatContentRef.current.addEventListener('scroll', handleScroll);
-                    setIsScrollListenerAdded(true);
-                    console.log("Scroll Listener Added");
-                }
-                console.log("step 4");
-            }
         }
     }
 
@@ -141,7 +133,6 @@ const App = () => {
                                     setIsLoggedIn(true);
                                 }}
                                 />
-
                         </div>
                     </div>
                 </>
