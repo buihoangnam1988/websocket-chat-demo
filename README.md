@@ -16,7 +16,7 @@ Install packages
 
     npm install
 
-Start the program
+Start the server app
 
     # On Linux/MacOS
     npm start
@@ -27,7 +27,7 @@ Install packages
 
     npm install
 
-Start the frontend
+Start the client app
 
     # On Linux/MacOS
     npm start

@@ -56,7 +56,8 @@ const App = () => {
     const handleScroll = (event) => {
         //console.log("Scroll Event");
         const { scrollHeight, scrollTop, clientHeight } = event.target;
-        const isBottomReached = (scrollHeight - Math.round(scrollTop) === clientHeight);
+        console.log("Scroll Event: ", scrollHeight, scrollTop, clientHeight);
+        const isBottomReached = (scrollHeight - Math.ceil(scrollTop) - 20 <= clientHeight);
         setIsScrolledToEnd(isBottomReached);
         console.log("Scroll Event: ", isBottomReached);
     };
