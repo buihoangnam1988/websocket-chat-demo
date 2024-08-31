@@ -36,3 +36,6 @@ Important: Different from a normal node program, react program should uses `reac
 Start the program:
 
     npm start
+
+## Others
+* Fix complaining about `React.render` & `ReactDOM` import: https://stackoverflow.com/a/71668419/9002449

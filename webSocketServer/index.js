@@ -2,6 +2,10 @@ const wsServerPort = 8002;
 const webSocketServer = require('websocket').server;
 const http = require('http');
 
+const LOG = (msg, logLevel='INFO') => {
+    console.log((new Date()).toISOString() + ` -- ${logLevel.padStart(6)}: ` + msg);
+}
+
 // Spinning the http server and the websocket server.
 const server = http.createServer(
     //function(request, response) {
@@ -32,24 +36,24 @@ const GetUniqueID = () => {
 wsServer.on('request', function (request) {
     var userID = GetUniqueID();
 
-    console.log((new Date()) + ' Received a connection from origin ' + request.origin + '.');
+    LOG('Received a connection from origin ' + request.origin + '.');
 
     // Accept the request
     const connection = request.accept(null, request.origin);
 
     clients[userID] = connection;
 
-    console.log('connected: ' + userID + ' in ' + Object.getOwnPropertyNames(clients));
+    LOG('Connected: ' + userID + ' in ' + Object.getOwnPropertyNames(clients));
 
     // On message receive
     connection.on('message', function(message) {
         if (message.type === 'utf8') {
-            console.log('Received Message: ', message.utf8Data);
+            LOG('Received Message: ', message.utf8Data);
 
             // broadcasting message to all connected clients
             for (key in clients) {
                 clients[key].sendUTF(message.utf8Data);
-                console.log('sent Message to: ', clients[key]);
+                LOG('Sent Message to: ', clients[key]);
             }
         }
     })
