@@ -1,6 +1,15 @@
 # Web Socker Demo: Server & Client
 ## Introduction:
+* A simple websocket-base chat app with backend () and frontend ()
 * Inspired by: https://www.youtube.com/watch?v=LenNpb5zqGE
+* Improvements:
+    * Hide scroll bar using CSS & SimpleBar
+    * Chat history can be automatically scrolled to the end
+    * Written using Function Components, working with Node v18 and later
+
+Screenshot:
+
+![](.md/img/screenshot1.png)
 ## Step by step
 ### Step 1: Create server app
     mkdir webSocketServer

@@ -129,17 +129,19 @@ const App = () => {
                     </div>
                 </>
                 : <>
-                    <div style={{padding: "200px 40px"}}>
-                        <Search
-                            placeholder='Enter Username'
-                            enterButton='Login'
-                            size='large'
-                            onSearch={value => {
-                                setUserName(value);
-                                setIsLoggedIn(true);
-                            }}
-                        />
+                    <div className='login-page'>
+                        <div style={{padding: "40px 40px"}}>
+                            <Search
+                                placeholder='Enter Username'
+                                enterButton='Login'
+                                size='large'
+                                onSearch={value => {
+                                    setUserName(value);
+                                    setIsLoggedIn(true);
+                                }}
+                                />
 
+                        </div>
                     </div>
                 </>
             }
