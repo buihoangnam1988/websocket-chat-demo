@@ -13,7 +13,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = React.useState(false);
     const [userName, setUserName] = React.useState('');
-    //cosnt [messages, setMessages] = React.useState([]);
+    const [messages, setMessages] = React.useState([]);
 
     React.useEffect(() => {
         client.onopen = () => {
@@ -23,19 +23,38 @@ const App = () => {
             //const dataFromServer = JSON.parse(message.data);
             //console.log(message.data);
             console.log('Message from server: ', message.data);
+            setMessages(prev => [...prev, JSON.parse(message.data)]);
         }
     }, []);
 
     const handleBtnClick = (message) => {
         if (client.readyState === client.OPEN) {
-            client.send(message);
+            // Note:
+            // client.send() will send the message to the server
+            // the event data on the server will have following structure:
+            // {
+            //     type: "utf8",
+            //     utf8Data: 'the message we sent'
+            // }
+            client.send(JSON.stringify({
+                type:"message", 
+                message: message, 
+                userName: userName
+            }));
         }
     }
 
     return (
         <div className='main'>
             {   isLoggedIn 
-                ? <button onClick={() => handleBtnClick("Hello")}>Send Message</button>
+                ? <>
+                    <button onClick={() => handleBtnClick("Hello")}>Send Message</button>
+                    {
+                        messages.map((msgItem, index) => 
+                            <p key={index}>{msgItem.userName}: {msgItem.message}</p>
+                        )
+                    }
+                </>
                 : <>
                     <div style={{padding: "200px 40px"}}>
                         <Search

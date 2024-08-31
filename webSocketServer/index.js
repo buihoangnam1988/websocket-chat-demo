@@ -45,12 +45,14 @@ wsServer.on('request', function (request) {
     connection.on('message', function(message) {
         //console.log(message);
         if (message.type === 'utf8') {
-            //LOG('Received Message: ' + message.utf8Data);
-
-            // broadcasting message to all connected clients
-            for (key in clients) {
-                clients[key].send(message.utf8Data);
-                LOG(`Sent Message to: ${key}`);
+            msgData = JSON.parse(message.utf8Data);
+            if (msgData.type === 'message') {
+                LOG(`Received message from ${msgData.userName}: ${msgData.message}`);
+                // broadcasting message to all connected clients
+                for (key in clients) {
+                    clients[key].send(message.utf8Data);
+                    LOG(`Sent Message to: ${key}`);
+                }
             }
         }
     })
