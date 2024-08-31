@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom/client'; 
 import React, {Component} from 'react';
 import { w3cwebsocket as W3CWebSocket } from 'websocket';
+import './index.css';
 
 const client = new W3CWebSocket('ws://localhost:8002');
 
