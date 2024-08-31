@@ -54,3 +54,15 @@ wsServer.on('request', function (request) {
         }
     })
 })
+
+wsServer.on('close', function(connection) {
+    //LOG('Peer ' + connection.remoteAddress + ' disconnected.');
+    let remoteAddress = connection.remoteAddress;
+    // close user connection
+    for (key in clients) {
+        if (clients[key] === connection) {
+            delete clients[key];
+            LOG(`Disconnected: ${key}, remote address ${remoteAddress}`);
+        }
+    }
+})
