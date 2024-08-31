@@ -15,13 +15,7 @@ const server = http.createServer(
     }
 );
 
-server.listen(wsServerPort
-    //, function() {
-    //    console.log((new Date()) + ` Server is listening on port ${wsServerPort}`);
-    //}
-);
-
-console.log(`listening on port ${wsServerPort}`);
+server.listen(wsServerPort, () => {LOG(`Server is listening on port ${wsServerPort}`);});
 
 const wsServer = new webSocketServer({
     httpServer: server
