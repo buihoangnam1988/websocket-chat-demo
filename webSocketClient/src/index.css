@@ -20,8 +20,27 @@ body {
 .bottom {
   position: fixed;
   width: 100%;
+  height: 50px;
+  background-color: #fefefe;
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
   bottom: 0;
   left: 0;
+}
+
+.bottom input {
+  border: none;
+}
+
+.bottom input:focus {
+  border: none;
+  box-shadow: none;
+}
+
+.bottom button {
+  background-color: #fefefe;
+  color: #1677ff
 }
 
 .chat-content{

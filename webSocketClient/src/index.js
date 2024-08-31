@@ -6,6 +6,7 @@ import 'antd/dist/reset.css'; // `antd/dist/antd.css` does not work, Ref: https:
 import './index.css';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
+import {CompassTwoTone, SendOutlined} from '@ant-design/icons';
 
 const { Search } = Input;
 const { Text} = Typography;
@@ -47,6 +48,7 @@ const App = () => {
                 message: message, 
                 userName: userName
             }));
+            setMsg('');
         }
     }
 
@@ -64,7 +66,7 @@ const App = () => {
                                         <Card key={index} style={{width: 300, margin: '16px 4px 0 4px', alignSelf: (userName === msgItem.userName) ? 'flex-end' : 'flex-start'}}>
                                                 <Meta
                                                     avatar={
-                                                        <Avatar style={{ backgroundColor: '#87d068' }} >{msgItem.userName.toUpperCase()}</Avatar>
+                                                        <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf'}} >{msgItem.userName.toUpperCase()}</Avatar>
                                                     }
                                                     title={msgItem.userName}
                                                     description={msgItem.message}
@@ -77,11 +79,11 @@ const App = () => {
                     <div className='bottom'>
                         <Search 
                             placeholder='Input message and send'
-                            enterButton='Send'
+                            enterButton={<SendOutlined style={{fontSize: '24px'}}/>}
                             value={msg}
                             onChange={e => setMsg(e.target.value)}
                             size='large'
-                            onSearch={value => {handleBtnClick(value); setMsg('');}}
+                            onSearch={value => {handleBtnClick(value);}}
                         />
                     </div>
                 </>
