@@ -21,7 +21,7 @@ Start the program
     # On Linux/MacOS
     npm start
     # On Windows
-    npm start_pc
+    npm run start_pc
 ### Client app - webSocketClient
 Install packages
 
@@ -32,7 +32,7 @@ Start the frontend
     # On Linux/MacOS
     npm start
     # On Windows
-    npm start_pc
+    npm run start_pc
 
 ## Others
 * Fix complaining about `React.render` & `ReactDOM` import: https://stackoverflow.com/a/71668419/9002449
