@@ -44,10 +44,7 @@ body {
 }
 
 .chat-content{
-  height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
-  padding-bottom: 50px;
-  padding-left: 8px;
-  padding-right: 8px;
+  padding: 8px;
 }
